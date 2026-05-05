@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sumegh Chanania — Product Manager & Analyst</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:       #0C0E12;
+  --ink2:      #111418;
+  --ink3:      #161B22;
+  --surface:   #1A2030;
+  --surface2:  #1F2638;
+  --gold:      #BF9B5A;
+  --gold2:     #D4B278;
+  --gold3:     #EDD49A;
+  --goldglow:  rgba(191,155,90,0.14);
+  --goldbdr:   rgba(191,155,90,0.28);
+  --goldbdr2:  rgba(191,155,90,0.5);
+  --slate:     #8A96A8;
+  --slate2:    #B0BBCC;
+  --slate3:    #CDD5E0;
+  --dim:       rgba(255,255,255,0.05);
+  --bdr:       rgba(255,255,255,0.07);
+  --teal:      #38B2A0;
+  --teal-soft: rgba(56,178,160,0.1);
+  --teal-bdr:  rgba(56,178,160,0.28);
+  --cream:     #F2EDE4;
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  background: var(--ink);
+  color: var(--cream);
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+::-webkit-scrollbar { width:3px; }
+::-webkit-scrollbar-track { background: var(--ink); }
+::-webkit-scrollbar-thumb { background: var(--goldbdr2); }
+
+/* ─── CANVAS TEXTURE ─── */
+body::after {
+  content:'';
+  position:fixed; inset:0; z-index:0; pointer-events:none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect width='1' height='1' fill='rgba(255,255,255,0.018)'/%3E%3C/svg%3E");
+}
+
+/* ─── NAV ─── */
+nav {
+  position:fixed; top:0; width:100%; z-index:999;
+  height:68px; padding:0 7%;
+  display:flex; align-items:center; justify-content:space-between;
+  background:rgba(12,14,18,0.92);
+  backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px);
+  border-bottom:1px solid var(--bdr);
+}
+.n-logo { display:flex; align-items:center; gap:13px; text-decoration:none; }
+.n-seal {
+  width:38px; height:38px; border-radius:50%;
+  border:1.5px solid var(--goldbdr2);
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Playfair Display',serif; font-size:0.9rem; font-weight:700;
+  color:var(--gold); letter-spacing:0.04em; flex-shrink:0;
+  background:radial-gradient(circle at 40% 35%, rgba(191,155,90,0.12), transparent 70%);
+}
+.n-text { line-height:1.25; }
+.n-name { font-size:0.82rem; font-weight:600; color:var(--cream); letter-spacing:0.04em; }
+.n-sub  { font-size:0.65rem; font-weight:400; color:var(--slate); letter-spacing:0.1em; text-transform:uppercase; }
+nav ul  { display:flex; gap:32px; list-style:none; align-items:center; }
+nav a   { color:var(--slate); text-decoration:none; font-size:0.72rem; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; transition:color .2s; }
+nav a:hover { color:var(--gold2); }
+.n-hire {
+  padding:8px 22px; border-radius:3px;
+  border:1px solid var(--goldbdr2);
+  color:var(--gold2) !important; background:var(--goldglow);
+  transition:background .2s !important;
+}
+.n-hire:hover { background:rgba(191,155,90,0.22) !important; }
+
+/* ─── HERO ─── */
+#home {
+  position:relative; z-index:1;
+  min-height:100vh; display:flex; align-items:center;
+  padding:88px 7% 80px;
+  overflow:hidden;
+}
+.hero-glow {
+  position:absolute; pointer-events:none;
+  width:900px; height:900px; border-radius:50%;
+  background:radial-gradient(circle, rgba(191,155,90,0.07) 0%, transparent 65%);
+  top:-300px; right:-200px; z-index:0;
+}
+.hero-glow2 {
+  position:absolute; pointer-events:none;
+  width:600px; height:600px; border-radius:50%;
+  background:radial-gradient(circle, rgba(56,178,160,0.05) 0%, transparent 65%);
+  bottom:-100px; left:-100px; z-index:0;
+}
+.hero-grid-lines {
+  position:absolute; inset:0; z-index:0; pointer-events:none;
+  background:
+    repeating-linear-gradient(90deg, rgba(255,255,255,0.018) 0px, rgba(255,255,255,0.018) 1px, transparent 1px, transparent 80px),
+    repeating-linear-gradient(0deg,  rgba(255,255,255,0.018) 0px, rgba(255,255,255,0.018) 1px, transparent 1px, transparent 80px);
+}
+.hero-wrap {
+  position:relative; z-index:1;
+  max-width:1260px; margin:0 auto; width:100%;
+  display:grid; grid-template-columns:1fr 380px; gap:90px; align-items:center;
+}
+
+/* left */
+.hero-tag {
+  display:inline-flex; align-items:center; gap:10px;
+  margin-bottom:32px;
+  font-size:0.65rem; font-weight:600; letter-spacing:0.22em; text-transform:uppercase;
+  color:var(--gold);
+  opacity:0; animation:fadeUp .7s .1s ease forwards;
+}
+.hero-tag-line { width:36px; height:1px; background:var(--gold); }
+
+.hero-h1 {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(3.4rem,5.5vw,5.2rem);
+  font-weight:700; line-height:1.02;
+  color:#fff; letter-spacing:-0.02em;
+  margin-bottom:10px;
+  opacity:0; animation:fadeUp .7s .18s ease forwards;
+}
+.hero-h1 span { color:var(--gold2); font-style:italic; font-weight:400; }
+
+.hero-divider {
+  width:56px; height:2px;
+  background:linear-gradient(90deg, var(--gold), transparent);
+  margin:22px 0;
+  opacity:0; animation:fadeUp .7s .25s ease forwards;
+}
+
+.hero-tagline {
+  font-size:0.78rem; font-weight:500; letter-spacing:0.12em; text-transform:uppercase;
+  color:var(--teal); margin-bottom:22px;
+  opacity:0; animation:fadeUp .7s .3s ease forwards;
+}
+
+.hero-desc {
+  max-width:520px; font-size:0.93rem; color:var(--slate2); line-height:1.95;
+  margin-bottom:40px;
+  opacity:0; animation:fadeUp .7s .36s ease forwards;
+}
+
+.hero-kpis {
+  display:flex; gap:0; margin-bottom:44px;
+  border:1px solid var(--bdr); border-radius:6px; overflow:hidden;
+  opacity:0; animation:fadeUp .7s .42s ease forwards;
+}
+.kpi {
+  flex:1; padding:20px 24px; text-align:center;
+  border-right:1px solid var(--bdr);
+  background:var(--dim);
+}
+.kpi:last-child { border-right:none; }
+.kpi-val {
+  font-family:'Playfair Display',serif;
+  font-size:2.1rem; font-weight:700; color:var(--gold2); line-height:1;
+  display:block; margin-bottom:6px;
+}
+.kpi-lbl {
+  font-size:0.62rem; font-weight:500; letter-spacing:0.14em; text-transform:uppercase;
+  color:var(--slate);
+}
+
+.hero-btns {
+  display:flex; gap:14px; flex-wrap:wrap;
+  opacity:0; animation:fadeUp .7s .48s ease forwards;
+}
+.btn-a {
+  display:inline-flex; align-items:center; gap:10px;
+  padding:14px 32px; border-radius:4px;
+  background:var(--gold); color:var(--ink); font-weight:700;
+  font-size:0.75rem; letter-spacing:0.12em; text-transform:uppercase;
+  text-decoration:none; transition:filter .2s,transform .2s;
+}
+.btn-a:hover { filter:brightness(1.08); transform:translateY(-2px); }
+.btn-b {
+  display:inline-flex; align-items:center; gap:10px;
+  padding:13px 32px; border-radius:4px;
+  border:1px solid var(--bdr); color:var(--slate2);
+  font-size:0.75rem; font-weight:500; letter-spacing:0.12em; text-transform:uppercase;
+  text-decoration:none; transition:border-color .2s,color .2s;
+}
+.btn-b:hover { border-color:var(--goldbdr2); color:var(--gold2); }
+
+/* portrait */
+.portrait-col {
+  display:flex; flex-direction:column; align-items:center;
+  opacity:0; animation:fadeUp .8s .22s ease forwards;
+}
+.portrait-stage { position:relative; width:310px; }
+.portrait-stage::before {
+  content:''; position:absolute;
+  inset:0; border-radius:8px;
+  border:1px solid rgba(191,155,90,0.2);
+  transform:translate(12px,14px); z-index:0;
+}
+.pframe {
+  position:relative; z-index:2;
+  width:310px; height:370px;
+  border-radius:6px; overflow:hidden;
+  border:1.5px solid var(--goldbdr2);
+  background:var(--surface);
+}
+.pframe img {
+  width:100%; height:100%; object-fit:cover; object-position:top center;
+  display:block; filter:saturate(0.88) contrast(1.05) brightness(0.97);
+}
+.pframe-overlay {
+  position:absolute; inset:0; z-index:1;
+  background:linear-gradient(to top, rgba(12,14,18,0.55) 0%, transparent 55%);
+}
+.pframe-init {
+  width:100%; height:100%;
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Playfair Display',serif; font-size:5rem; font-weight:700;
+  color:var(--gold); background:var(--surface2);
+}
+.corner { position:absolute; width:20px; height:20px; z-index:3; }
+.c-tl { top:-1px;  left:-1px;  border-top:2px solid var(--gold); border-left:2px solid var(--gold); }
+.c-tr { top:-1px;  right:-1px; border-top:2px solid var(--gold); border-right:2px solid var(--gold); }
+.c-bl { bottom:-1px; left:-1px;  border-bottom:2px solid var(--gold); border-left:2px solid var(--gold); }
+.c-br { bottom:-1px; right:-1px; border-bottom:2px solid var(--gold); border-right:2px solid var(--gold); }
+.avail-chip {
+  position:absolute; bottom:-18px; left:50%; transform:translateX(-50%);
+  display:inline-flex; align-items:center; gap:8px;
+  background:var(--ink2); border:1.5px solid var(--goldbdr2);
+  padding:8px 20px; border-radius:30px; white-space:nowrap; z-index:4;
+}
+.avail-dot {
+  width:7px; height:7px; border-radius:50%; background:#4ADE80;
+  animation:pulse 2s ease-in-out infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
+.avail-txt { font-size:0.68rem; font-weight:600; letter-spacing:0.1em; color:var(--gold3); text-transform:uppercase; }
+
+.badge-row { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-top:50px; }
+.pbadge {
+  font-size:0.63rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase;
+  padding:5px 13px; border-radius:2px;
+  background:var(--goldglow); border:1px solid var(--goldbdr);
+  color:var(--gold2);
+}
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(22px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+
+/* ─── SECTION SHELL ─── */
+.sec { position:relative; z-index:1; padding:104px 7%; }
+.sec.alt { background:var(--ink2); }
+.sec-max { max-width:1260px; margin:0 auto; }
+
+.overline {
+  display:flex; align-items:center; gap:10px; margin-bottom:12px;
+  font-size:0.63rem; font-weight:600; letter-spacing:0.24em; text-transform:uppercase;
+  color:var(--gold);
+}
+.overline::before { content:''; width:28px; height:1px; background:var(--gold); }
+
+.sec-title {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2rem,3.2vw,2.75rem); font-weight:700;
+  color:#fff; line-height:1.15; margin-bottom:60px;
+}
+.sec-title em { font-style:italic; font-weight:400; color:var(--gold2); }
+
+.hr { max-width:1260px; margin:0 auto; height:1px; background:linear-gradient(90deg,transparent,var(--bdr),transparent); }
+
+/* ─── ABOUT ─── */
+.about-grid { display:grid; grid-template-columns:1.15fr 0.85fr; gap:80px; align-items:start; }
+.about-body { font-size:0.91rem; color:var(--slate2); line-height:2; }
+.about-body p { margin-bottom:18px; }
+.about-nums {
+  display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:36px;
+}
+.astat {
+  padding:22px 18px; border-radius:6px;
+  background:var(--dim); border:1px solid var(--bdr);
+  border-left:2px solid var(--gold);
+  transition:border-color .2s;
+}
+.astat:hover { border-color:var(--goldbdr2); border-left-color:var(--gold2); }
+.astat-n {
+  font-family:'Playfair Display',serif;
+  font-size:1.9rem; font-weight:700; color:var(--gold2); line-height:1;
+  display:block; margin-bottom:5px;
+}
+.astat-l { font-size:0.67rem; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:var(--slate); }
+.cert-stack { display:flex; flex-direction:column; gap:11px; }
+.crt {
+  display:flex; align-items:center; gap:15px;
+  padding:15px 18px; border-radius:6px;
+  background:var(--dim); border:1px solid var(--bdr);
+  transition:border-color .25s, transform .25s;
+}
+.crt:hover { border-color:var(--goldbdr2); transform:translateX(5px); }
+.crt-ico {
+  width:36px; height:36px; flex-shrink:0; border-radius:5px;
+  background:var(--goldglow); border:1px solid var(--goldbdr);
+  display:flex; align-items:center; justify-content:center;
+}
+.crt-ico svg { width:15px; height:15px; stroke:var(--gold); stroke-width:1.8; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+.crt-name { font-size:0.83rem; font-weight:500; color:var(--cream); }
+.crt-sub  { font-size:0.7rem; color:var(--slate); margin-top:2px; }
+.pill {
+  margin-left:auto; flex-shrink:0; font-size:0.62rem; font-weight:600;
+  letter-spacing:0.08em; padding:3px 10px; border-radius:2px;
+}
+.pill-on  { background:var(--teal-soft); border:1px solid var(--teal-bdr); color:var(--teal); }
+.pill-wip { background:var(--goldglow); border:1px solid var(--goldbdr); color:var(--gold2); }
+
+/* ─── SKILLS ─── */
+.skill-row { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-bottom:18px; }
+.sk {
+  padding:28px 24px; border-radius:7px;
+  background:var(--dim); border:1px solid var(--bdr);
+  position:relative; overflow:hidden;
+  transition:border-color .25s,transform .25s;
+}
+.sk::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:1.5px;
+  background:linear-gradient(90deg,var(--gold),rgba(191,155,90,0)); opacity:0;
+  transition:opacity .25s;
+}
+.sk:hover { border-color:var(--goldbdr); transform:translateY(-3px); }
+.sk:hover::before { opacity:1; }
+.sk-icon {
+  width:42px; height:42px; border-radius:7px; margin-bottom:18px;
+  background:var(--goldglow); border:1px solid var(--goldbdr);
+  display:flex; align-items:center; justify-content:center;
+}
+.sk-icon svg { width:18px; height:18px; stroke:var(--gold); stroke-width:1.7; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+.sk-cat { font-size:0.65rem; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold); margin-bottom:14px; }
+.tags { display:flex; flex-wrap:wrap; gap:7px; }
+.tg {
+  font-size:0.73rem; color:var(--slate2);
+  padding:5px 11px; border-radius:3px;
+  border:1px solid var(--bdr); background:rgba(255,255,255,0.03);
+  transition:color .15s,border-color .15s;
+}
+.tg:hover { color:var(--gold3); border-color:var(--goldbdr); }
+.tools-strip {
+  padding:20px 26px; border-radius:7px;
+  background:var(--dim); border:1px solid var(--bdr);
+  display:flex; flex-wrap:wrap; align-items:center; gap:10px;
+}
+.t-lbl { font-size:0.63rem; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold); margin-right:8px; flex-shrink:0; }
+.tool {
+  font-size:0.73rem; color:var(--slate2); padding:5px 14px;
+  border-radius:20px; border:1px solid var(--goldbdr);
+  background:var(--goldglow); transition:color .15s,background .15s;
+}
+.tool:hover { color:var(--gold3); background:rgba(191,155,90,0.2); }
+
+/* ─── EXPERIENCE ─── */
+.xp-wrap { padding-left:36px; position:relative; }
+.xp-wrap::before {
+  content:''; position:absolute; left:0; top:6px; bottom:0; width:1px;
+  background:linear-gradient(to bottom, var(--goldbdr2) 0%, transparent 100%);
+}
+.xp {
+  position:relative; margin-bottom:52px;
+  padding:28px 32px; border-radius:8px;
+  background:var(--dim); border:1px solid var(--bdr);
+  transition:border-color .25s;
+}
+.xp:hover { border-color:var(--goldbdr); }
+.xp::before {
+  content:''; position:absolute;
+  left:-40px; top:28px;
+  width:9px; height:9px; border-radius:50%;
+  background:var(--gold);
+  box-shadow:0 0 0 3px var(--ink),0 0 0 5px rgba(191,155,90,0.28);
+}
+.xp-header { display:flex; align-items:flex-start; justify-content:space-between; gap:16px; flex-wrap:wrap; margin-bottom:6px; }
+.xp-role { font-family:'Playfair Display',serif; font-size:1.18rem; font-weight:600; color:#fff; line-height:1.25; }
+.xp-period {
+  flex-shrink:0; font-size:0.63rem; font-weight:600; letter-spacing:0.09em;
+  padding:5px 13px; border-radius:2px;
+  background:var(--goldglow); border:1px solid var(--goldbdr); color:var(--gold2);
+  white-space:nowrap;
+}
+.xp-co { font-size:0.78rem; color:var(--slate); margin-bottom:18px; }
+.xp-co strong { color:var(--slate2); font-weight:500; }
+.xp-pts { list-style:none; display:flex; flex-direction:column; gap:9px; }
+.xp-pts li {
+  font-size:0.86rem; color:var(--slate2); padding-left:20px;
+  position:relative; line-height:1.78;
+}
+.xp-pts li::before {
+  content:''; position:absolute; left:0; top:10px;
+  width:6px; height:1px; background:var(--gold);
+}
+
+/* ─── PROJECTS ─── */
+.pj-grid { display:grid; grid-template-columns:1fr 1fr; gap:22px; }
+.pj {
+  padding:36px 32px; border-radius:8px;
+  background:var(--dim); border:1px solid var(--bdr);
+  position:relative; overflow:hidden;
+  transition:border-color .25s,transform .25s;
+}
+.pj::after {
+  content:''; position:absolute; top:0; left:0; right:0; height:1.5px;
+  background:linear-gradient(90deg, rgba(56,178,160,0), var(--teal), rgba(56,178,160,0));
+  opacity:0; transition:opacity .25s;
+}
+.pj:hover { border-color:var(--teal-bdr); transform:translateY(-4px); }
+.pj:hover::after { opacity:1; }
+.pj-type {
+  font-size:0.62rem; font-weight:600; letter-spacing:0.2em; text-transform:uppercase;
+  color:var(--teal); margin-bottom:12px;
+  display:flex; align-items:center; gap:8px;
+}
+.pj-type::before { content:''; width:16px; height:1px; background:var(--teal); }
+.pj-title { font-family:'Playfair Display',serif; font-size:1.18rem; font-weight:600; color:#fff; margin-bottom:8px; line-height:1.3; }
+.pj-org { font-size:0.73rem; color:var(--slate); margin-bottom:18px; padding-bottom:18px; border-bottom:1px solid var(--bdr); }
+.pj-desc { font-size:0.84rem; color:var(--slate2); line-height:1.88; }
+.pj-link {
+  display:inline-flex; align-items:center; gap:6px; margin-top:16px;
+  font-size:0.7rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase;
+  color:var(--teal); text-decoration:none; transition:color .2s;
+}
+.pj-link:hover { color:var(--gold2); }
+
+/* ─── EDUCATION ─── */
+.edu-grid { display:grid; grid-template-columns:1fr 1fr; gap:22px; }
+.edu {
+  display:flex; gap:22px; align-items:flex-start;
+  padding:30px 28px; border-radius:8px;
+  background:var(--dim); border:1px solid var(--bdr);
+  transition:border-color .25s;
+}
+.edu:hover { border-color:var(--goldbdr); }
+.edu-icon {
+  width:50px; height:50px; flex-shrink:0; border-radius:7px;
+  background:var(--goldglow); border:1.5px solid var(--goldbdr);
+  display:flex; align-items:center; justify-content:center;
+}
+.edu-icon svg { width:20px; height:20px; stroke:var(--gold); stroke-width:1.6; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+.edu-deg { font-family:'Playfair Display',serif; font-size:1.05rem; font-weight:600; color:#fff; margin-bottom:6px; line-height:1.3; }
+.edu-sch { font-size:0.78rem; color:var(--slate2); margin-bottom:6px; line-height:1.5; }
+.edu-yr  { font-size:0.68rem; font-weight:600; letter-spacing:0.1em; color:var(--gold); }
+
+/* ─── CONTACT ─── */
+.ct-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
+.ct-hl { font-family:'Playfair Display',serif; font-size:clamp(2rem,3vw,2.7rem); font-weight:700; color:#fff; line-height:1.2; margin-bottom:18px; }
+.ct-hl em { font-style:italic; font-weight:400; color:var(--gold2); }
+.ct-avail {
+  display:inline-flex; align-items:center; gap:9px;
+  padding:8px 18px; border-radius:20px; margin-bottom:22px;
+  background:rgba(74,222,128,0.07); border:1px solid rgba(74,222,128,0.2);
+  font-size:0.68rem; font-weight:600; letter-spacing:0.09em; color:#4ADE80;
+}
+.ct-sub { font-size:0.88rem; color:var(--slate2); line-height:1.95; margin-bottom:32px; max-width:400px; }
+.ct-links { display:flex; flex-direction:column; gap:11px; }
+.ct-row {
+  display:flex; align-items:center; gap:16px;
+  padding:16px 20px; border-radius:6px;
+  background:var(--dim); border:1px solid var(--bdr);
+  text-decoration:none; transition:border-color .2s,transform .2s;
+}
+.ct-row:hover { border-color:var(--goldbdr2); transform:translateX(5px); }
+.ct-ico {
+  width:38px; height:38px; flex-shrink:0; border-radius:4px;
+  background:var(--goldglow); border:1px solid var(--goldbdr);
+  display:flex; align-items:center; justify-content:center;
+}
+.ct-ico svg { width:15px; height:15px; stroke:var(--gold); stroke-width:1.8; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+.ct-lbl { font-size:0.62rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--slate); display:block; margin-bottom:2px; }
+.ct-val { font-size:0.84rem; font-weight:500; color:var(--cream); }
+
+/* ─── FOOTER ─── */
+footer {
+  position:relative; z-index:1;
+  background:var(--ink2); border-top:1px solid var(--bdr);
+  padding:26px 7%;
+  display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;
+}
+.ft-l { font-family:'Playfair Display',serif; font-size:1rem; color:var(--gold); }
+.ft-c { font-size:0.7rem; color:var(--slate); }
+.ft-r { display:flex; gap:22px; }
+.ft-r a { font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--slate); text-decoration:none; transition:color .2s; }
+.ft-r a:hover { color:var(--gold2); }
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:1100px){
+  .hero-wrap { grid-template-columns:1fr; gap:60px; }
+  .portrait-col { order:-1; }
+  .portrait-stage { width:240px; }
+  .pframe { width:240px; height:285px; }
+  .about-grid,.ct-grid { grid-template-columns:1fr; gap:48px; }
+  .skill-row { grid-template-columns:1fr 1fr; }
+}
+@media(max-width:768px){
+  nav ul { display:none; }
+  .skill-row,.pj-grid,.edu-grid { grid-template-columns:1fr; }
+  .hero-kpis { flex-direction:column; }
+  .kpi { border-right:none; border-bottom:1px solid var(--bdr); }
+  .kpi:last-child { border-bottom:none; }
+  .sec { padding:72px 5%; }
+  .xp-wrap { padding-left:20px; }
+  .xp { padding:22px 18px; }
+  .about-nums { grid-template-columns:1fr 1fr; }
+}
+@media(max-width:480px){
+  .hero-btns { flex-direction:column; }
+  .btn-a, .btn-b { text-align:center; justify-content:center; }
+  .about-nums { grid-template-columns:1fr; }
+  .badge-row { margin-top:42px; }
+  .ct-grid { gap:36px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="n-logo" href="#home">
+    <div class="n-seal">SC</div>
+    <div class="n-text">
+      <div class="n-name">Sumegh Chanania</div>
+      <div class="n-sub">Product Manager &amp; Analyst</div>
+    </div>
+  </a>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact" class="n-hire">Hire Me</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-grid-lines"></div>
+  <div class="hero-wrap">
+
+    <!-- LEFT -->
+    <div>
+      <div class="hero-tag"><span class="hero-tag-line"></span>Product Manager · Baltimore, MD</div>
+      <h1 class="hero-h1">Sumegh<br><span>Chanania</span></h1>
+      <div class="hero-divider"></div>
+      <p class="hero-tagline">Product Strategy &nbsp;·&nbsp; Data Analytics &nbsp;·&nbsp; Agile Delivery</p>
+      <p class="hero-desc">Product Manager focused on product strategy, user behavior analysis, and data-driven decision-making. Skilled in SQL, Python, Tableau, Power BI, and A/B testing to drive feature adoption, improve retention, and deliver measurable business growth in agile environments.</p>
+      <div class="hero-kpis">
+        <div class="kpi"><span class="kpi-val">5+</span><span class="kpi-lbl">Years Experience</span></div>
+        <div class="kpi"><span class="kpi-val">30%</span><span class="kpi-lbl">Feature Adoption↑</span></div>
+        <div class="kpi"><span class="kpi-val">50%</span><span class="kpi-lbl">Reporting Effort↓</span></div>
+        <div class="kpi"><span class="kpi-val">40%</span><span class="kpi-lbl">API Perf. Gain</span></div>
+      </div>
+      <div class="hero-btns">
+        <a href="#contact" class="btn-a">Get In Touch &rarr;</a>
+        <a href="#experience" class="btn-b">View Experience</a>
+      </div>
+    </div>
+
+    <!-- RIGHT: PORTRAIT -->
+    <div class="portrait-col">
+      <div class="portrait-stage">
+        <div class="pframe">
+          <img src="Professional_Photo.png" alt="Sumegh Chanania"
+            onerror="this.style.display='none'; document.querySelector('.pframe-init').style.display='flex';">
+          <div class="pframe-init" style="display:none;">SC</div>
+          <div class="pframe-overlay"></div>
+        </div>
+        <div class="corner c-tl"></div>
+        <div class="corner c-tr"></div>
+        <div class="corner c-bl"></div>
+        <div class="corner c-br"></div>
+        <div class="avail-chip">
+          <div class="avail-dot"></div>
+          <span class="avail-txt">Open to Opportunities</span>
+        </div>
+      </div>
+      <div class="badge-row">
+        <span class="pbadge">MS Eng. Mgmt</span>
+        <span class="pbadge">JHU '24</span>
+        <span class="pbadge">SQL · Python</span>
+        <span class="pbadge">Agile / Scrum</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<!-- ABOUT -->
+<section class="sec" id="about">
+  <div class="sec-max">
+    <div class="overline">Background</div>
+    <h2 class="sec-title">About <em>Me</em></h2>
+    <div class="about-grid">
+      <div>
+        <div class="about-body">
+          <p>Master of Engineering Management graduate from Johns Hopkins University with deep expertise in product management, data analytics, user behavior analysis, and agile delivery. Based in Baltimore, MD and open to relocation.</p>
+          <p>My career spans product analytics at Hotchkis &amp; Wiley, technical product management at Zero International, and associate product management at ADP. I specialize in translating user insights and business objectives into structured product roadmaps — bridging engineering, UX, data science, and marketing teams to ship features that move the needle.</p>
+          <p>I believe great product managers are equal parts strategist, analyst, and collaborator. Whether optimizing a SaaS platform through A/B testing and KPI dashboards or driving a cross-functional sprint to reduce deployment timelines, I bring data-rigor and cross-functional fluency to every engagement.</p>
+        </div>
+        <div class="about-nums">
+          <div class="astat"><span class="astat-n">30%</span><span class="astat-l">Feature Adoption Increase</span></div>
+          <div class="astat"><span class="astat-n">20%</span><span class="astat-l">Churn Reduction</span></div>
+          <div class="astat"><span class="astat-n">50%</span><span class="astat-l">Reporting Effort Reduced</span></div>
+          <div class="astat"><span class="astat-n">40%</span><span class="astat-l">Manual Intervention Cut</span></div>
+        </div>
+      </div>
+      <div class="cert-stack">
+        <div class="crt">
+          <div class="crt-ico"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+          <div><div class="crt-name">MS Engineering Management</div><div class="crt-sub">Johns Hopkins University · Dec 2024</div></div>
+          <span class="pill pill-on">Earned</span>
+        </div>
+        <div class="crt">
+          <div class="crt-ico"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 12h8M12 8v8"/></svg></div>
+          <div><div class="crt-name">Agile / Scrum Methodology</div><div class="crt-sub">Jira &amp; Confluence Expert</div></div>
+          <span class="pill pill-on">Active</span>
+        </div>
+        <div class="crt">
+          <div class="crt-ico"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+          <div><div class="crt-name">Data Analytics &amp; BI</div><div class="crt-sub">SQL, Python, Tableau, Power BI</div></div>
+          <span class="pill pill-on">Active</span>
+        </div>
+        <div class="crt">
+          <div class="crt-ico"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <div><div class="crt-name">Cloud &amp; API Integration</div><div class="crt-sub">AWS · Azure · Apache Airflow</div></div>
+          <span class="pill pill-on">Active</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<!-- SKILLS -->
+<section class="sec alt" id="skills">
+  <div class="sec-max">
+    <div class="overline">Capabilities</div>
+    <h2 class="sec-title">Core <em>Competencies</em></h2>
+    <div class="skill-row">
+      <div class="sk">
+        <div class="sk-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div>
+        <div class="sk-cat">Product Management &amp; Strategy</div>
+        <div class="tags">
+          <span class="tg">Product Lifecycle Mgmt</span><span class="tg">Feature Prioritization</span><span class="tg">Roadmaps</span><span class="tg">A/B Testing</span><span class="tg">MVP Development</span><span class="tg">User Story Mapping</span><span class="tg">Release Planning</span><span class="tg">GTM Strategy</span>
+        </div>
+      </div>
+      <div class="sk">
+        <div class="sk-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+        <div class="sk-cat">Data Analytics &amp; BI</div>
+        <div class="tags">
+          <span class="tg">SQL</span><span class="tg">Python</span><span class="tg">R</span><span class="tg">Tableau</span><span class="tg">Power BI</span><span class="tg">Looker</span><span class="tg">Google Analytics</span><span class="tg">Mixpanel</span><span class="tg">Amplitude</span><span class="tg">KPI Tracking</span><span class="tg">ETL Processes</span>
+        </div>
+      </div>
+      <div class="sk">
+        <div class="sk-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <div class="sk-cat">Market Research &amp; UX</div>
+        <div class="tags">
+          <span class="tg">Competitor Analysis</span><span class="tg">Customer Segmentation</span><span class="tg">Behavioral Analytics</span><span class="tg">Wireframing</span><span class="tg">Figma</span><span class="tg">Usability Testing</span><span class="tg">Journey Mapping</span><span class="tg">CRO</span>
+        </div>
+      </div>
+    </div>
+    <div class="skill-row" style="margin-top:0;">
+      <div class="sk">
+        <div class="sk-icon"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
+        <div class="sk-cat">Agile &amp; Project Management</div>
+        <div class="tags">
+          <span class="tg">Agile / Scrum</span><span class="tg">Kanban</span><span class="tg">Risk Management</span><span class="tg">Stakeholder Collaboration</span><span class="tg">Budgeting</span>
+        </div>
+      </div>
+      <div class="sk">
+        <div class="sk-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+        <div class="sk-cat">Technical &amp; Cloud</div>
+        <div class="tags">
+          <span class="tg">AWS</span><span class="tg">Azure</span><span class="tg">API Integrations</span><span class="tg">Apache Airflow</span><span class="tg">Snowflake</span><span class="tg">Firebase</span><span class="tg">Data Warehousing</span>
+        </div>
+      </div>
+      <div class="sk">
+        <div class="sk-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
+        <div class="sk-cat">User Insights &amp; Growth</div>
+        <div class="tags">
+          <span class="tg">Feature Adoption Optimization</span><span class="tg">Retention Analysis</span><span class="tg">Churn Reduction</span><span class="tg">Conversion Optimization</span><span class="tg">Predictive Analytics</span>
+        </div>
+      </div>
+    </div>
+    <div class="tools-strip">
+      <span class="t-lbl">Tools &amp; Platforms</span>
+      <span class="tool">Jira</span><span class="tool">Confluence</span><span class="tool">Figma</span><span class="tool">Tableau</span><span class="tool">Power BI</span><span class="tool">SQL</span><span class="tool">Python</span><span class="tool">Google Analytics</span><span class="tool">Mixpanel</span><span class="tool">Amplitude</span><span class="tool">Snowflake</span><span class="tool">AWS</span>
+    </div>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<!-- EXPERIENCE -->
+<section class="sec" id="experience">
+  <div class="sec-max">
+    <div class="overline">Career History</div>
+    <h2 class="sec-title">Professional <em>Experience</em></h2>
+    <div class="xp-wrap">
+
+      <div class="xp">
+        <div class="xp-header">
+          <div class="xp-role">Product Analyst</div>
+          <span class="xp-period">Aug 2024 – Mar 2026</span>
+        </div>
+        <div class="xp-co"><strong>Hotchkis &amp; Wiley</strong> &nbsp;·&nbsp; Baltimore, MD</div>
+        <ul class="xp-pts">
+          <li>Led product analytics and optimization initiatives for an internal tool, using user behavior analysis, A/B testing, and data-driven decision-making to improve adoption, retention, product performance, and stakeholder visibility.</li>
+          <li>Led end-to-end optimization of a SaaS-based product, improving feature adoption by 30% through in-depth user behavior analysis, A/B testing, and product performance insights.</li>
+          <li>Designed and implemented real-time product performance dashboards using SQL and Tableau, enabling internal stakeholders to track KPIs, reduce churn by 20%, and improve user engagement.</li>
+          <li>Defined and analyzed key product metrics using Google Analytics, uncovering insights that drove a 15% increase in user retention through targeted feature enhancements.</li>
+          <li>Developed automated ETL pipelines using Apache Airflow and Snowflake, improving data accuracy and reducing manual reporting efforts by 50% to support faster product iterations.</li>
+          <li>Improved API performance by 40% and integrated third-party APIs to enhance data flow, strengthen cross-platform insights, and support better product reliability and decision-making.</li>
+        </ul>
+      </div>
+
+      <div class="xp">
+        <div class="xp-header">
+          <div class="xp-role">Technical Product Manager Intern</div>
+          <span class="xp-period">Jun 2024 – Aug 2024</span>
+        </div>
+        <div class="xp-co"><strong>Zero International</strong> &nbsp;·&nbsp; Baltimore, MD &nbsp;·&nbsp; Internship</div>
+        <ul class="xp-pts">
+          <li>Conducted market research on 3D virtual tour technology for real estate and retail platforms, supporting the integration of three new platform features that improved user engagement by 25%.</li>
+          <li>Led cross-functional teams to develop advanced search filters, accessibility controls, and global user settings, increasing system efficiency by 20% through API response time improvements.</li>
+        </ul>
+      </div>
+
+      <div class="xp">
+        <div class="xp-header">
+          <div class="xp-role">Associate Product Manager</div>
+          <span class="xp-period">Jun 2021 – Jul 2023</span>
+        </div>
+        <div class="xp-co"><strong>ADP</strong> &nbsp;·&nbsp; Hyderabad, TG</div>
+        <ul class="xp-pts">
+          <li>Managed analytics, feature validation, and roadmap execution for a paycard product, partnering with engineering, UX, and data science teams to improve operational efficiency by 25%, reduce support queries, and strengthen backend workflows.</li>
+          <li>Conducted data analysis using SQL and Python to optimize product performance models, improving accuracy by 30% and supporting a seamless user experience.</li>
+          <li>Collaborated with engineering, UX, and data science teams to refine product logic and workflows, reducing manual intervention by 40% and streamlining backend processing.</li>
+          <li>Partnered with product managers to define KPIs, success metrics, and reporting requirements, building real-time dashboards in Power BI to enable data-driven decision-making and continuous product iteration.</li>
+          <li>Spearheaded stakeholder alignment across business and technical teams to ensure seamless integration within the product roadmap, reducing deployment timelines by 15% through Agile sprint cycles.</li>
+          <li>Identified user behavior patterns through customer journey analysis, leading to a 20% improvement in paycard product usability and overall user experience.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<!-- PROJECTS -->
+<section class="sec alt" id="projects">
+  <div class="sec-max">
+    <div class="overline">Selected Work</div>
+    <h2 class="sec-title">Key <em>Projects</em></h2>
+    <div class="pj-grid">
+      <div class="pj">
+        <div class="pj-type">Product / Data · GitHub</div>
+        <h3 class="pj-title">Portfolio Projects</h3>
+        <div class="pj-org">github.com/sumegh13</div>
+        <p class="pj-desc">A collection of product and data projects showcasing end-to-end skills in product analytics, SQL pipelines, dashboard design, and user behavior analysis. Covers A/B testing frameworks, ETL workflows, and data-driven product decision-making.</p>
+        <a class="pj-link" href="https://github.com/sumegh13" target="_blank">View on GitHub &rarr;</a>
+      </div>
+      <div class="pj">
+        <div class="pj-type">Product Strategy · 2024</div>
+        <h3 class="pj-title">3D Virtual Tour Platform — Feature Integration</h3>
+        <div class="pj-org">Zero International · Baltimore, MD</div>
+        <p class="pj-desc">Researched 3D virtual tour technology for real estate and retail platforms. Led cross-functional delivery of advanced search filters, accessibility controls, and global user settings — resulting in a 25% improvement in user engagement and 20% gain in system efficiency.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<!-- EDUCATION -->
+<section class="sec" id="education">
+  <div class="sec-max">
+    <div class="overline">Academic Background</div>
+    <h2 class="sec-title">Education &amp; <em>Credentials</em></h2>
+    <div class="edu-grid">
+      <div class="edu">
+        <div class="edu-icon"><svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5-10-5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+        <div>
+          <div class="edu-deg">Master of Engineering Management</div>
+          <div class="edu-sch">Johns Hopkins University · Baltimore, MD</div>
+          <div class="edu-yr">Graduated Dec 2024</div>
+        </div>
+      </div>
+      <div class="edu">
+        <div class="edu-icon"><svg viewBox="0 0 24 24"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><polyline points="13 2 13 9 20 9"/></svg></div>
+        <div>
+          <div class="edu-deg">Bachelor of Computer Science</div>
+          <div class="edu-sch">Jawaharlal Nehru Technological University · Hyderabad, TG</div>
+          <div class="edu-yr">Graduated Jun 2021</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<!-- CONTACT -->
+<section class="sec alt" id="contact">
+  <div class="sec-max">
+    <div class="ct-grid">
+      <div>
+        <div class="overline">Let's Connect</div>
+        <h2 class="ct-hl">Open to new<br><em>opportunities</em></h2>
+        <div class="ct-avail"><div class="avail-dot"></div>Available · Baltimore, MD · Open to Relocation</div>
+        <p class="ct-sub">Whether you need a product manager to drive your next data-informed roadmap or a strategic analyst to uncover growth opportunities — let's start a conversation.</p>
+        <a href="mailto:sumegh.ca.work@gmail.com" class="btn-a">Send a Message &rarr;</a>
+      </div>
+      <div class="ct-links">
+        <a class="ct-row" href="tel:4438392194">
+          <div class="ct-ico"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.38 2 2 0 0 1 3.58 1.2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.73a16 16 0 0 0 6.29 6.29l1.8-1.8a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+          <div><span class="ct-lbl">Phone</span><span class="ct-val">(443) 839-2194</span></div>
+        </a>
+        <a class="ct-row" href="mailto:sumegh.ca.work@gmail.com">
+          <div class="ct-ico"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+          <div><span class="ct-lbl">Email</span><span class="ct-val">sumegh.ca.work@gmail.com</span></div>
+        </a>
+        <a class="ct-row" href="https://linkedin.com/in/sumegh-chanania" target="_blank">
+          <div class="ct-ico"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div>
+          <div><span class="ct-lbl">LinkedIn</span><span class="ct-val">linkedin.com/in/sumegh-chanania</span></div>
+        </a>
+        <a class="ct-row" href="https://github.com/sumegh13" target="_blank">
+          <div class="ct-ico"><svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></div>
+          <div><span class="ct-lbl">GitHub</span><span class="ct-val">github.com/sumegh13</span></div>
+        </a>
+        <a class="ct-row" href="#">
+          <div class="ct-ico"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div><span class="ct-lbl">Location</span><span class="ct-val">Baltimore, MD — Open to Relocation</span></div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-l">Sumegh Chanania</div>
+  <div class="ft-c">&copy; 2026 Sumegh Chanania &nbsp;·&nbsp; All Rights Reserved</div>
+  <div class="ft-r">
+    <a href="#home">Top</a>
+    <a href="#experience">Experience</a>
+    <a href="#contact">Contact</a>
+  </div>
+</footer>
+
+</body>
+</html>
